@@ -7,14 +7,14 @@ ALTER ROLE lookingglassdev SET timezone TO 'UTC';
 
 GRANT ALL PRIVILEGES ON DATABASE lookingglass TO lookingglassdev;
 
-%superuser: lookingglassadmin, P@ssw0rd
+/*superuser: lookingglassadmin, P@ssw0rd
 
 %psql -h localhost -p 5432 -U lookingglassdev lookingglass
 %(password: password)
 
 %CREATE DATABASE lookingglass;
 %\c lookingglass;
-
+*/
 CREATE TABLE imagemetadata (
 	imageurl TEXT PRIMARY KEY,
 	tags TEXT,
