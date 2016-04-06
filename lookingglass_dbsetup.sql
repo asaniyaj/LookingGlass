@@ -15,6 +15,8 @@ GRANT ALL PRIVILEGES ON DATABASE lookingglass TO lookingglassdev;
 %CREATE DATABASE lookingglass;
 %\c lookingglass;
 */
+
+
 CREATE TABLE imagemetadata (
 	imageurl TEXT PRIMARY KEY,
 	tags TEXT,
