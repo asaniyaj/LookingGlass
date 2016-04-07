@@ -1,0 +1,66 @@
+{% extends "searchapp/base.html" %}
+{% block content %}
+<div class="container">
+	<div class="top-bar">
+		<div class="project-title row">
+			<div class="col-md-12">
+				<center><h1 class="site-title">Library Catalogue</h1><center>
+				<h6 class="site-subtitle">CS6400 Advanced Project</h6>
+			</div>
+		</div>    
+	</div>  
+	
+	<div id="wrap" style="position:relative;">
+		<div id="left" style="margin-right:201px">
+			<object data= {{ paper_path }} type="application/pdf" width="800" height="1000">
+				<p>Paper not found. Please check id again!</p>
+			</object>
+		</div>
+		<div id="right" style="position:absolute;width:200px;right:0;top:0">
+			<div>
+				<div>
+					<label>Other papers by the authors:</label>
+					{% if paper_authors.count > 0 %}
+						{%for author in paper_authors%}
+							
+							<li>{{ author }}</li>
+						{%endfor%}
+					{%else%}
+						<li>No Authors found.</li>
+					{%endif%}
+				</div>
+				
+				<div>
+					<label>Reference papers:</label>
+					{%if reference_papers.count > 0%}
+						{%for paper in reference_papers%}
+							<li>{{ paper.title }}</li>
+						{%endfor%}
+					{%else%}
+						<li>No reference found.</li>
+					{%endif%}
+				</div>
+				
+				<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+					<label>Recommended papers:</label>
+					{%if recommended_papers.length > 0%}
+						{%for paper in recommended_papers%}
+							<li><a href="#" title="">{{ paper.title }}</a></li>
+						{%endfor%}
+					{%else%}
+						<li>No recommendations found.</li>
+					{%endif%}
+				</div>
+			</div>
+		</div>
+	</div>
+	
+    <div>
+		
+		
+		</div>
+</div>
+
+
+
+{% endblock %}

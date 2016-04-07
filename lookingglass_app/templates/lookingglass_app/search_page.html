@@ -1,0 +1,22 @@
+{% extends "searchapp/base.html" %}
+{% block content %}
+
+<div class="container">
+  <div class="top-bar">
+    <div class="project-title row">
+        <div class="col-md-12">
+            <center><h1 class="site-title">Library Catalogue</h1><center>
+            <h6 class="site-subtitle">CS6400 Advanced Project</h6>
+        </div>
+    </div>    
+	<div class="search-area row">
+		<div class="col-md-12">
+            {% include "searchapp/search_form.html" %}
+        </div>
+    </div>
+  </div>  
+    <div class="result-area row">
+           {% include "searchapp/search_results.html" %}
+    </div>
+</div>
+{% endblock %}

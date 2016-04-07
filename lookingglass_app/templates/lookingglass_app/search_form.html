@@ -1,0 +1,17 @@
+<form name = "searchform" class="form-horizontal" action="" method="GET">
+ {% csrf_token %}            
+  <div class="input-group" id="adv-search">
+    <input type="text" class="form-control" name= "search-text" placeholder="Search for paper" />
+    <div class="input-group-btn">
+      <div class="btn-group" role="group">
+        <div class="dropdown dropdown-lg">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+          <div class="dropdown-menu dropdown-menu-right" role="menu">
+             {% include "searchapp/adv_search_form.html" %}
+          </div>
+          </div>
+          <button type="submit" class="btn btn-primary" name="normal_search" value="normal_search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+        </div>
+      </div>
+    </div>
+  </form>

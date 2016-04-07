@@ -1,0 +1,29 @@
+<form class="form-horizontal" role="form" action="" method="GET">
+ {% csrf_token %}
+  <div class="form-group">
+    <span class="radio-option"><input type="radio" name="check" value="stitle" id="searchTitle" checked />
+      <label for="searchTitle" id="titleSearchLabel">Search in Title</label></span>
+
+      <span class="radio-option"><input type="radio" name="check" value="sdoc" id="searchDoc" />
+        <label for="searchDoc" id="docSearchLabel">Search all Documents</label></span>
+      </div>
+      <div class="form-group">
+        <label for="filter">Filter by</label>
+        <select class="form-control" name="category_id">
+          <option value="0" selected>All Categories</option>
+          {% for entry in categories %}
+          <option value="{{ entry.id }}">{{ entry.categoryName }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">  
+        <label for="contain">Author</label>
+        <input class="form-control" type="text" />
+      </div>
+      <div class="form-group">
+        <label for="contain">Published in Year</label>
+        <input class="form-control" type="number" step="1" min="1900" max="2015" id="publishedYear"/>
+      </div>
+
+      <center><button type="submit" class="btn btn-primary"  name="adv_search" value="adv_search">Search!</button></center>
+    </form>
