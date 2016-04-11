@@ -5,8 +5,10 @@ from lookingglass_app.models import Tag, Source, Image
 class ImageIndex(indexes.SearchIndex, indexes.Indexable):
     text    = indexes.CharField(document=True, use_template=True)
     url     = indexes.CharField(model_attr='url')
-    tags    = indexes.MultiValueField()
-    source  = indexes.MultiValueField()    
+    tag     = indexes.CharField(model_attr='tag')
+    source  = indexes.CharField(model_attr='source')
+    #tags = indexes.MultiValueField()
+    #source  = indexes.MultiValueField()    
 
     def index_queryset(self, using=None):
         """Used when the entire index for model is updated."""

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html ng-app="phpro">
+
+<head>
+
+<title>The Looking Glass</title>
+<!-- load bootstrap and friends -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+
+<!-- load angularjs and the seperate route module -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+
+<!-- load up our app -->
+
+<script src="app/app.js"></script>
+<!--
+<link rel=”stylesheet” href=”templates/widgEditor/css/widgEditor.css” />
+<script src=”templates/widgEditor/scripts/widgEditor.js”></script> -->
+</head>
+
+<body>
+
+<!-- Static navbar -->
+<div class="navbar navbar-default navbar-static-top" role="navigation">
+<div class="container">
+<div class="navbar-header">
+<a class="navbar-brand" href="#">The Looking Glass</a>
+</div>
+<div class="navbar-collapse collapse"> <!-- Commenting out FAQ, Contact 
+<ul class="nav navbar-nav">
+<li class="active"><a href="#">Home</a></li>
+<li><a href="#faq">FAQ</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul> -->
+<ul class="nav navbar-nav navbar-right">
+
+<li><a href="http://phpro.org/examples">Contact</a></li>
+</ul>
+</div><!--/.nav-collapse -->
+</div>
+</div>
+
+
+<div class="container">
+
+<!-- content is injected here -->
+<div ng-view></div>
+
+<script type="text/javascript">
+
+/***********************************************
+* Scrollable Menu Links- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* Visit http://www.dynamicDrive.com for hundreds of DHTML scripts
+* Please keep this notice intact
+***********************************************/
+
+//configure path for left and right arrows
+var goleftimage='https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-left-b-32.png'
+var gorightimage='https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_play_arrow_48px-32.png'
+//configure menu width (in px):
+var menuwidth=1000
+//configure menu height (in px):
+var menuheight=400
+//Specify scroll buttons directions ("normal" or "reverse"):
+var scrolldir="normal"
+//configure scroll speed (1-10), where larger is faster
+var scrollspeed=3
+//specify menu content
+var menucontents='<nobr><img src="http://engineeringschools.com/uploads/digital_asset/file/33/engineering-school-ranking_600x315.jpg" alt="Mountain View" style="width:300px;height:300px;"> | <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQmNIRW6A7rCh-TgdZoudQ4QS9WvPeBsKEzWRCwS7UP9C4Qw5_YhQ" alt="Mountain View" style="width:300px;height:300px;">| <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU1sEmrcVvOHw-pdB17PzwULA7d3CZrJpTe8ZhicuG38b_L9x1" alt="Mountain View" style="width:300px;height:300px;"> | <img src="http://www.studying-in-germany.org/wp-content/uploads/2013/12/Study-Mechanical-Engineering-Germany.jpg" alt="Mountain View" style="width:300px;height:300px;"></nobr>'
+
+
+////NO NEED TO EDIT BELOW THIS LINE////////////
+
+var iedom=document.all||document.getElementById
+var leftdircode='onMouseover="moveleft()" onMouseout="clearTimeout(lefttime)"'
+var rightdircode='onMouseover="moveright()" onMouseout="clearTimeout(righttime)"'
+if (scrolldir=="reverse"){
+var tempswap=leftdircode
+leftdircode=rightdircode
+rightdircode=tempswap
+}
+if (iedom)
+document.write('<span id="temp" style="visibility:hidden;position:absolute;top:-100;left:-5000">'+menucontents+'</span>')
+var actualwidth=''
+var cross_scroll, ns_scroll
+var loadedyes=0
+function fillup(){
+if (iedom){
+cross_scroll=document.getElementById? document.getElementById("test2") : document.all.test2
+cross_scroll.innerHTML=menucontents
+actualwidth=document.all? cross_scroll.offsetWidth : document.getElementById("temp").offsetWidth
+}
+else if (document.layers){
+ns_scroll=document.ns_scrollmenu.document.ns_scrollmenu2
+ns_scroll.document.write(menucontents)
+ns_scroll.document.close()
+actualwidth=ns_scroll.document.width
+}
+loadedyes=1
+}
+window.onload=fillup
+
+function moveleft(){
+if (loadedyes){
+if (iedom&&parseInt(cross_scroll.style.left)>(menuwidth-actualwidth)){
+cross_scroll.style.left=parseInt(cross_scroll.style.left)-scrollspeed+"px"
+}
+else if (document.layers&&ns_scroll.left>(menuwidth-actualwidth))
+ns_scroll.left-=scrollspeed
+}
+lefttime=setTimeout("moveleft()",50)
+}
+
+function moveright(){
+if (loadedyes){
+if (iedom&&parseInt(cross_scroll.style.left)<0)
+cross_scroll.style.left=parseInt(cross_scroll.style.left)+scrollspeed+"px"
+else if (document.layers&&ns_scroll.left<0)
+ns_scroll.left+=scrollspeed
+}
+righttime=setTimeout("moveright()",50)
+}
+
+
+if (iedom||document.layers){
+with (document){
+write('<table border="0" cellspacing="0" cellpadding="2">')
+write('<td valign="middle"><a href="#" '+leftdircode+'><img src="'+goleftimage+'"border=0></a> </td>')
+write('<td width="'+menuwidth+'px" valign="top">')
+if (iedom){
+write('<div style="position:relative;width:'+menuwidth+'px;height:'+menuheight+'px;overflow:hidden;">')
+write('<div id="test2" style="position:absolute;left:0;top:0">')
+write('</div></div>')
+}
+else if (document.layers){
+write('<ilayer width='+menuwidth+' height='+menuheight+' name="ns_scrollmenu">')
+write('<layer name="ns_scrollmenu2" left=0 top=0></layer></ilayer>')
+}
+write('</td>')
+write('<td valign="middle"> <a href="#" '+rightdircode+'>')
+write('<img src="'+gorightimage+'"border=0></a>')
+write('</td></table>')
+}
+}
+
+</script>
+</div> <!-- /container -->
+
+</body>
+</html>

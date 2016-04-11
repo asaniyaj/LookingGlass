@@ -1,0 +1,5 @@
+{{ object.title }} 
+{{ object.document }}
+{{ object.source }}
+{{ object.abstract }}
+{{ object.publishedYear }}

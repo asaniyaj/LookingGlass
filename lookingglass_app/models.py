@@ -16,9 +16,10 @@ class Source(models.Model):
         return self.name  
 
 class Image(models.Model):
-    url = models.CharField('URL of the image', max_length=100)
-    tag = models.ManyToManyField(Tag, blank=False)
-    source = models.ManyToManyField(Source, blank=False)
+    url = models.CharField('URL of the image', max_length=1000)
+    tag = models.TextField(blank=True) #models.ManyToManyField(Tag, blank=False)
+    source = models.TextField(blank=True)#models.ManyToManyField(Source, blank=False)
+    
     
     def __unicode__(self):
         return self.url

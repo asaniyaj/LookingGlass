@@ -21,10 +21,10 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'', include('lookingglass_app.urls')), 
     (r'^search/', include('haystack.urls')),
     url(r'^admin_tools/', include('admin_tools.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'', include('lookingglass_app.urls')),   
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 admin.site.site_header = 'Looking Glass'
