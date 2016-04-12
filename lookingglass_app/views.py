@@ -13,30 +13,13 @@ logr = logging.getLogger(__name__)
 
 ## Search View
 def search_page(request):
-    #categories = Category.objects.all()
     context = dict()
-    #print request
-    #if 'normal_search' in request.GET:
-    #    search_text = request.GET.get('search-text', '')
-    #    context['search_text'] = search_text
-    #    context['query'] = search_text
-        ## Full document search
-    #    context['papers'] = SearchQuerySet().filter(content=context['search_text'])      
-    #    print context['papers']
-        
-    #elif 'adv_search' in request.GET:
-    #    search_text = request.GET.get('search-text', '')
-    #    context['search_text'] = search_text
-    #    context['query'] = search_text
-    #    ## Full document search
-    #    context['papers'] = SearchQuerySet().filter(title=context['search_text'])   
-    #    print context['papers']
-    return render_to_response('lookingglass_app/search_page.html', context) 
+    return render_to_response('lookingglass_app/index.html', context) 
     
 def display_images(request, object_id):
     
     context = dict()
-    return render_to_response('lookingglass_app/display_paper.html', context) 
+    return render_to_response('lookingglass_app/index.html', context) 
 
 
  
