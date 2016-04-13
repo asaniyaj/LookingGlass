@@ -1,152 +1,148 @@
-<!DOCTYPE html>
-<html ng-app="phpro">
+{% extends "lookingglass_app/base.html" %}
+{% block content %}
 
-<head>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">The Looking Glass</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"><!--
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Services</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>-->
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
-<title>The Looking Glass</title>
-<!-- load bootstrap and friends -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+    <!-- Page Content -->
+    <div class="container">
 
-<!-- load angularjs and the seperate route module -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1>The Looking Glass</h1>
+                <p class="lead">We bring pictures into your life!</p>
+                
+				<div class="jumbotron">
+				<form>
+                <label for="inputlg">Copy your text here!</label>
+				<input class="form-control input-lg" type="text"></input>
+				<p></p>
+				
+				<input type="button" id="btn" class=" btn btn-info" value="Show Pictures!" />
+				</form>
+				
+				<script type="text/javascript">
 
-<!-- load up our app -->
+        document.getElementById('btn').onclick = function() {
+            
+                src1 = 'http://www.joyonline.cz/sites/default/files/harry.jpg' ,
+                img1 = document.createElement('img');
+            img1.src = src1;
+			img1.height=250;
+			img1.width=250;
+			img1.id="image1";
+			document.body.appendChild(img1);
+			
+			src2 = 'http://lovelace-media.imgix.net/uploads/273/19b25570-d1f4-0133-a28a-0e55e2be01e5.jpg?' ,
+                img2 = document.createElement('img');
 
-<script src="app/app.js"></script>
-<!--
-<link rel=”stylesheet” href=”templates/widgEditor/css/widgEditor.css” />
-<script src=”templates/widgEditor/scripts/widgEditor.js”></script> -->
-</head>
+            img2.src = src2;
+			img2.height=250;
+			img2.width=250;
+            document.body.appendChild(img2);
+			
+			src3 = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYtf7D45WMSvYcYKo519khgqYD5K5DzuHcTJXJPnOXgQ64qKVS' ,
+                img3 = document.createElement('img');
 
-<body>
+            img3.src = src3;
+			img3.height=250;
+			img3.width=250;
+            document.body.appendChild(img3);
+			
+			src4 = 'http://cdn.collider.com/wp-content/uploads/2015/07/harry-potter-and-the-sorcerers-stone.jpg' ,
+                img4 = document.createElement('img');
 
-<!-- Static navbar -->
-<div class="navbar navbar-default navbar-static-top" role="navigation">
-<div class="container">
-<div class="navbar-header">
-<a class="navbar-brand" href="#">The Looking Glass</a>
-</div>
-<div class="navbar-collapse collapse"> <!-- Commenting out FAQ, Contact 
-<ul class="nav navbar-nav">
-<li class="active"><a href="#">Home</a></li>
-<li><a href="#faq">FAQ</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul> -->
-<ul class="nav navbar-nav navbar-right">
+            img4.src = src4;
+			img4.height=250;
+			img4.width=250;
+            document.body.appendChild(img4);
+			
+			src5 = 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRR8Gmzm0DBmCABELzHiMy1PvX-eCjzIiywoJ_AgKXZQqVGzpVE' ,
+                img5 = document.createElement('img');
 
-<li><a href="http://phpro.org/examples">Contact</a></li>
-</ul>
-</div><!--/.nav-collapse -->
-</div>
-</div>
+            img5.src = src5;
+			img5.height=250;
+			img5.width=250;
+            document.body.appendChild(img5);
+			
+			src6 = 'http://images.zap2it.com/assets/26025_ar/harry-potter-and-the-sorcerers-stone.jpg' ,
+                img6 = document.createElement('img');
 
+            img6.src = src6;
+			img6.height=250;
+			img6.width=250;
+            document.body.appendChild(img6);
+			
+			src7 = 'http://images2.fanpop.com/image/photos/12900000/Movies-TV-Harry-Potter-the-Philosophers-Stone-2001-Promotional-Stills-tom-felton-12940512-399-260.jpg' ,
+                img7 = document.createElement('img');
 
-<div class="container">
+            img7.src = src7;
+			img7.height=250;
+			img7.width=250;
+            document.body.appendChild(img7);
+			
+			src7 = 'http://i01.kanobu.net/r/b575beaf7d3906eed2a044a5c9b114d5/1040x-/u.kanobu.ru/editor/images/89/fad98c50-df3d-46cd-a428-a4671480ecca.jpg' ,
+                img7 = document.createElement('img');
 
-<!-- content is injected here -->
-<div ng-view></div>
+            img7.src = src7;
+			img7.height=250;
+			img7.width=250;
+            document.body.appendChild(img7);
+			
+			src8 = 'http://desktop.freewallpaper4.me/view/original/7344/harry-potter-and-the-sorcerers-stone.jpg' ,
+                img8 = document.createElement('img');
 
-<script type="text/javascript">
+            img8.src = src8;
+			img8.height=250;
+			img8.width=250;
+            document.body.appendChild(img8);
+			
+			src9 = 'http://cdn.playbuzz.com/cdn/23651551-a1f5-47ad-8709-f3535f0defaf/89ff10dd-aa41-4d17-ae8f-835281ebd3fd.jpg' ,
+                img9 = document.createElement('img');
 
-/***********************************************
-* Scrollable Menu Links- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
-* Visit http://www.dynamicDrive.com for hundreds of DHTML scripts
-* Please keep this notice intact
-***********************************************/
+            img9.src = src9;
+			img9.height=250;
+			img9.width=250;
+            document.body.appendChild(img9);
+        }
+    </script>
+									
+				
+				
+				</div>
+				
+            </div>
+        </div>
+        <!-- /.row -->
 
-//configure path for left and right arrows
-var goleftimage='https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-left-b-32.png'
-var gorightimage='https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_play_arrow_48px-32.png'
-//configure menu width (in px):
-var menuwidth=1000
-//configure menu height (in px):
-var menuheight=400
-//Specify scroll buttons directions ("normal" or "reverse"):
-var scrolldir="normal"
-//configure scroll speed (1-10), where larger is faster
-var scrollspeed=3
-//specify menu content
-var menucontents='<nobr><img src="http://engineeringschools.com/uploads/digital_asset/file/33/engineering-school-ranking_600x315.jpg" alt="Mountain View" style="width:300px;height:300px;"> | <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQmNIRW6A7rCh-TgdZoudQ4QS9WvPeBsKEzWRCwS7UP9C4Qw5_YhQ" alt="Mountain View" style="width:300px;height:300px;">| <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU1sEmrcVvOHw-pdB17PzwULA7d3CZrJpTe8ZhicuG38b_L9x1" alt="Mountain View" style="width:300px;height:300px;"> | <img src="http://www.studying-in-germany.org/wp-content/uploads/2013/12/Study-Mechanical-Engineering-Germany.jpg" alt="Mountain View" style="width:300px;height:300px;"></nobr>'
-
-
-////NO NEED TO EDIT BELOW THIS LINE////////////
-
-var iedom=document.all||document.getElementById
-var leftdircode='onMouseover="moveleft()" onMouseout="clearTimeout(lefttime)"'
-var rightdircode='onMouseover="moveright()" onMouseout="clearTimeout(righttime)"'
-if (scrolldir=="reverse"){
-var tempswap=leftdircode
-leftdircode=rightdircode
-rightdircode=tempswap
-}
-if (iedom)
-document.write('<span id="temp" style="visibility:hidden;position:absolute;top:-100;left:-5000">'+menucontents+'</span>')
-var actualwidth=''
-var cross_scroll, ns_scroll
-var loadedyes=0
-function fillup(){
-if (iedom){
-cross_scroll=document.getElementById? document.getElementById("test2") : document.all.test2
-cross_scroll.innerHTML=menucontents
-actualwidth=document.all? cross_scroll.offsetWidth : document.getElementById("temp").offsetWidth
-}
-else if (document.layers){
-ns_scroll=document.ns_scrollmenu.document.ns_scrollmenu2
-ns_scroll.document.write(menucontents)
-ns_scroll.document.close()
-actualwidth=ns_scroll.document.width
-}
-loadedyes=1
-}
-window.onload=fillup
-
-function moveleft(){
-if (loadedyes){
-if (iedom&&parseInt(cross_scroll.style.left)>(menuwidth-actualwidth)){
-cross_scroll.style.left=parseInt(cross_scroll.style.left)-scrollspeed+"px"
-}
-else if (document.layers&&ns_scroll.left>(menuwidth-actualwidth))
-ns_scroll.left-=scrollspeed
-}
-lefttime=setTimeout("moveleft()",50)
-}
-
-function moveright(){
-if (loadedyes){
-if (iedom&&parseInt(cross_scroll.style.left)<0)
-cross_scroll.style.left=parseInt(cross_scroll.style.left)+scrollspeed+"px"
-else if (document.layers&&ns_scroll.left<0)
-ns_scroll.left+=scrollspeed
-}
-righttime=setTimeout("moveright()",50)
-}
-
-
-if (iedom||document.layers){
-with (document){
-write('<table border="0" cellspacing="0" cellpadding="2">')
-write('<td valign="middle"><a href="#" '+leftdircode+'><img src="'+goleftimage+'"border=0></a> </td>')
-write('<td width="'+menuwidth+'px" valign="top">')
-if (iedom){
-write('<div style="position:relative;width:'+menuwidth+'px;height:'+menuheight+'px;overflow:hidden;">')
-write('<div id="test2" style="position:absolute;left:0;top:0">')
-write('</div></div>')
-}
-else if (document.layers){
-write('<ilayer width='+menuwidth+' height='+menuheight+' name="ns_scrollmenu">')
-write('<layer name="ns_scrollmenu2" left=0 top=0></layer></ilayer>')
-}
-write('</td>')
-write('<td valign="middle"> <a href="#" '+rightdircode+'>')
-write('<img src="'+gorightimage+'"border=0></a>')
-write('</td></table>')
-}
-}
-
-</script>
-</div> <!-- /container -->
-
-</body>
-</html>
+    </div>
+{% endblock %}
