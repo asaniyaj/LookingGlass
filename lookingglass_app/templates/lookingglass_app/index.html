@@ -54,88 +54,13 @@
 
         document.getElementById('btn').onclick = function() {
             
-                src1 = 'http://www.joyonline.cz/sites/default/files/harry.jpg' ,
-                img1 = document.createElement('img');
-            img1.src = src1;
-			img1.height=250;
-			img1.width=250;
-			img1.id="image1";
-			document.body.appendChild(img1);
+        $("#wrapper").load("static/wrapper.html");
 			
-			src2 = 'http://lovelace-media.imgix.net/uploads/273/19b25570-d1f4-0133-a28a-0e55e2be01e5.jpg?' ,
-                img2 = document.createElement('img');
 
-            img2.src = src2;
-			img2.height=250;
-			img2.width=250;
-            document.body.appendChild(img2);
-			
-			src3 = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYtf7D45WMSvYcYKo519khgqYD5K5DzuHcTJXJPnOXgQ64qKVS' ,
-                img3 = document.createElement('img');
-
-            img3.src = src3;
-			img3.height=250;
-			img3.width=250;
-            document.body.appendChild(img3);
-			
-			src4 = 'http://cdn.collider.com/wp-content/uploads/2015/07/harry-potter-and-the-sorcerers-stone.jpg' ,
-                img4 = document.createElement('img');
-
-            img4.src = src4;
-			img4.height=250;
-			img4.width=250;
-            document.body.appendChild(img4);
-			
-			src5 = 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRR8Gmzm0DBmCABELzHiMy1PvX-eCjzIiywoJ_AgKXZQqVGzpVE' ,
-                img5 = document.createElement('img');
-
-            img5.src = src5;
-			img5.height=250;
-			img5.width=250;
-            document.body.appendChild(img5);
-			
-			src6 = 'http://images.zap2it.com/assets/26025_ar/harry-potter-and-the-sorcerers-stone.jpg' ,
-                img6 = document.createElement('img');
-
-            img6.src = src6;
-			img6.height=250;
-			img6.width=250;
-            document.body.appendChild(img6);
-			
-			src7 = 'http://images2.fanpop.com/image/photos/12900000/Movies-TV-Harry-Potter-the-Philosophers-Stone-2001-Promotional-Stills-tom-felton-12940512-399-260.jpg' ,
-                img7 = document.createElement('img');
-
-            img7.src = src7;
-			img7.height=250;
-			img7.width=250;
-            document.body.appendChild(img7);
-			
-			src7 = 'http://i01.kanobu.net/r/b575beaf7d3906eed2a044a5c9b114d5/1040x-/u.kanobu.ru/editor/images/89/fad98c50-df3d-46cd-a428-a4671480ecca.jpg' ,
-                img7 = document.createElement('img');
-
-            img7.src = src7;
-			img7.height=250;
-			img7.width=250;
-            document.body.appendChild(img7);
-			
-			src8 = 'http://desktop.freewallpaper4.me/view/original/7344/harry-potter-and-the-sorcerers-stone.jpg' ,
-                img8 = document.createElement('img');
-
-            img8.src = src8;
-			img8.height=250;
-			img8.width=250;
-            document.body.appendChild(img8);
-			
-			src9 = 'http://cdn.playbuzz.com/cdn/23651551-a1f5-47ad-8709-f3535f0defaf/89ff10dd-aa41-4d17-ae8f-835281ebd3fd.jpg' ,
-                img9 = document.createElement('img');
-
-            img9.src = src9;
-			img9.height=250;
-			img9.width=250;
-            document.body.appendChild(img9);
-        }
+            }
     </script>
-									
+				
+
 				
 				
 				</div>
@@ -145,4 +70,7 @@
         <!-- /.row -->
 
     </div>
+    <div id="wrapper">
+    </div>
+</div>
 {% endblock %}
