@@ -3,3 +3,4 @@
 /urls.pyc
 /wsgi.pyc
 *sqlite3
+*DS_Store
