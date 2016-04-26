@@ -3,7 +3,7 @@ from selenium import webdriver
 from flickrapi import FlickrAPI
 from pprint import pprint
 
-def getImagesFromGoogle(query_text, numreq=5):
+def getImages_Google(query_text, numreq=5):
 	service = build("customsearch", "v1",
 				   developerKey="AIzaSyAaK2IKIW4X56zG5zzczggnJWcRJohbsK0")
 	res = service.cse().list(
@@ -20,15 +20,15 @@ def getImagesFromGoogle(query_text, numreq=5):
 			resList.append(item['link'])
 		return resList
 	
-def getSimilarImages(image_url, numreq=5):
+def getSimilarImages_Google(image_url, numreq=5):
 	imgKeywords = getKeywordsFromImage(image_url)
 	if imgKeywords=="No Answer Found":
 #		print "No Similar Images"
 		return None
-	simImgList = getImagesFromGoogle(imgKeywords, numreq)
+	simImgList = getImages_Google(imgKeywords, numreq)
 	return simImgList
 	
-def getImagesFromFlickr_User(user_id='141756319@N03',query_text='trees'):
+def getImages_FlickrUser(user_id='141756319@N03',query_text='trees'):
 	FLICKR_PUBLIC = '91641c7f59cf2208c50f79c9ed6830c6'
 	FLICKR_SECRET = '1207195c4965ce80'
 	flickr = FlickrAPI(FLICKR_PUBLIC, FLICKR_SECRET, format='parsed-json')

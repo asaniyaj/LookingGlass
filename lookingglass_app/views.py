@@ -32,7 +32,7 @@ def display_images(request):#, text):
     for t in gentags:
         sq.add(SQ(tag=t), SQ.OR)
     context['tags'] = query_text
-    images_flickr = iFind.getImagesFromFlickr_User(query_text=query_text)
+    images_flickr = iFind.getImages_FlickrUser(query_text=query_text)
     print "Flickr says: ", images_flickr
     #if images_flickr
     images = SearchQuerySet().filter(sq)
