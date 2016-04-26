@@ -1,6 +1,53 @@
 Photo_file	Photo_id	url_Large	url_Middle	url_Small	url_Original
 C:\ImageData\Flickr\actor\0001_2124494179.jpg	2124494179	http://farm3.static.flickr.com/2244/2124494179_b039ddccac_b.jpg	http://farm3.static.flickr.com/2244/2124494179_b039ddccac.jpg	http://farm3.static.flickr.com/2244/2124494179_b039ddccac_m.jpg	null
-C:\ImageData\Flickr\actor\0002_174174086.jpg	174174086	http://farm1.static.flickr.com/44/174174086_a0b4e9d9cf_b.jpg	http://farm1.static.flickr.com/44/174174086_a0b4e9d9cf.jpg	http://farm1.static.flickr.com/44/174174086_a0b4e9d9cf_m.jpg	null
+C:\ImageData\Flickr\actor\0002_174174086.jpg	174174086	http://farm1.static.flickr.com/44/174174086_a0b4e9d9cf_b.jpg	http://farm1.static.flickr.com/44/174174086_a0b4e9d9cf.jpg	nfrom apiclient.discovery import build
+from selenium import webdriver
+
+
+def getKeywordsFromImage(image_url):
+    driver = webdriver.PhantomJS()
+    bing_url = "http://www.bing.com/images/searchbyimage?FORM=IRSBIQ&cbir=sbi&imgurl="
+    search_url = bing_url + image_url
+    driver.get(search_url)
+    html2 = driver.execute_script("return document.documentElement.innerHTML;")
+    html3 = html2.encode('ascii','ignore')
+    split_str = '<h2 class=" query">'
+    list1 = html3.split(split_str,1)
+    if len(list1)==2:
+        val = list1[1].split('<',1)
+        ans = val[0]
+        return ans
+    else:
+        return "No Answer Found"
+
+
+def getSimilarImages(image_url):
+    output = getKeywordsFromImage(image_url)
+    print output
+
+    if output=="No Answer Found":
+        print "No Similar Images"
+        return
+
+    service = build("customsearch", "v1",
+               developerKey="AIzaSyAaK2IKIW4X56zG5zzczggnJWcRJohbsK0")
+
+    res = service.cse().list(
+        q=output,
+        cx='002826226247236690903:hf34j5tijdm',
+        searchType='image',
+        num=5
+    ).execute()
+
+    if not 'items' in res:
+        print 'No result !!\nres is: {}'.format(res)
+    else:
+        for item in res['items']:
+            print item['link']
+
+
+getSimilarImages("http://www.aie.edu.au/Images/sydney-campus-01.jpg")
+	null
 C:\ImageData\Flickr\actor\0003_221597162.jpg	221597162	http://farm1.static.flickr.com/68/221597162_9a3a1a47f9_b.jpg	http://farm1.static.flickr.com/68/221597162_9a3a1a47f9.jpg	http://farm1.static.flickr.com/68/221597162_9a3a1a47f9_m.jpg	http://farm1.static.flickr.com/68/221597162_9a3a1a47f9_o.jpg
 C:\ImageData\Flickr\actor\0004_540895766.jpg	540895766	null	null	null	null
 C:\ImageData\Flickr\actor\0005_262041423.jpg	262041423	http://farm1.static.flickr.com/122/262041423_478c3cb2c8_b.jpg	http://farm1.static.flickr.com/122/262041423_478c3cb2c8.jpg	http://farm1.static.flickr.com/122/262041423_478c3cb2c8_m.jpg	http://farm1.static.flickr.com/122/262041423_478c3cb2c8_o.jpg

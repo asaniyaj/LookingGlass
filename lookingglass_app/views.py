@@ -31,14 +31,13 @@ def display_images(request):#, text):
     sq = SQ()
     for t in gentags:
         sq.add(SQ(tag=t), SQ.OR)
-    
     context['tags'] = query_text
     images_flickr = iFind.getImagesFromFlickr_User(query_text=query_text)
-    images_flickr
+    print "Flickr says: ", images_flickr
     #if images_flickr
     images = SearchQuerySet().filter(sq)
     #images = SearchQuerySet().filter(tag='celebrity')    #(url='http://farm3.static.flickr.com/2244/2124494179_b039ddccac_b.jpg')#
-    print images
+    print "DB says: ", images
     
     return render_to_response('lookingglass_app/index.html', context) 
   
