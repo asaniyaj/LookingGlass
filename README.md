@@ -7,3 +7,5 @@ to start the app, pip install django, django-haystack, django-jquery, elasticsea
 2. open admin site : python manage.py createsuperuser
 3. Add you controllers in views.py and html files in templates/lookingglass_app
 4. Never commit your local files like db.sqllite3 to git.
+5. pip install google-api-python-client
+6. pip install flickrapi

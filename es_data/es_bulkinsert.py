@@ -2,15 +2,10 @@ import scipy
 import numpy as np
 import pandas as pd
 import csv
-import matplotlib.pyplot as plt
-import pylab as P
-from scipy import stats
-import math
-from scipy.optimize import minimize
-from sklearn.feature_extraction import DictVectorizer
-from pyfm import pylibfm
-from sklearn.metrics import mean_squared_error
 import json, requests
+import sqlite3
+conn = sqlite3.connect('../db.sqlite3')
+c = conn.cursor()
 
 col_url= ['Photo_file', 'Photo_id', 'url_Large', 'url_Middle', 'url_Small', 'url_Original']
 col_tag = ['Photo_id', 'tags']
@@ -43,12 +38,17 @@ for iter, row in df_model.iterrows():
 			"tag": row_tag[1],
 			"source": row['source']
 		})+'\n'
+		sqlstat = "INSERT INTO lookingglass_app_image (id, url, tag,source) VALUES ("+str(iter)+",  '"+row['url']+"', '"+row_tag[1]+"', 'NUS')";
+		print 'sqlstat is', sqlstat
+		c.execute(sqlstat)
+
+conn.commit()
+conn.close()
 
 print "image_json created"
-fo = open("json_image_part1.txt", "w")
+fo = open("json_image.txt", "w")
 fo.write(image_json)
 	
 response = requests.put('http://127.0.0.1:9200/ImageIndex/_bulk?pretty', data=image_json)
 print response.text
-
 

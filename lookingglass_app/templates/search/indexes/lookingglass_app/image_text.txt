@@ -1,0 +1,4 @@
+{{ object.text }}
+{{ object.url }}
+{{ object.tag }}
+{{ object.source }}

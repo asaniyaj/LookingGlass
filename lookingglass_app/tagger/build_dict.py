@@ -32,7 +32,7 @@ from extras import SimpleReader
 import nltk
 from nltk.corpus import brown
 
-def build_dict(corpus, stopwords=None, measure='ICF'):
+def build_dict(corpus, stopwords=None, measure='IDF'):
     '''
     @param corpus:    a list of documents, represented as lists of (stemmed)
                       words

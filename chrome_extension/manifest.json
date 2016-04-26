@@ -1,0 +1,13 @@
+{
+  "manifest_version": 2,
+  "name": "Looking Glass",
+  "description": "Check if images relevant to the image can be found",
+  "version": "1.0",
+  "permissions": ["tabs", "<all_urls>"],
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "index.html"
+  }
+}
+
+
