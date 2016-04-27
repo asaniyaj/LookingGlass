@@ -16,46 +16,40 @@ $(document).ready(function() {
 	    		dataType: "json",
 	    		success: function(data) {
 	    			$("#quest-box").addClass("col-lg-6");
-	    			$("#main_text").css("height", "250px");
-	    			$("#quest-box").css("height", "400px");
+	    			$("#main_text").css("height", "280px");
+	    			$("#quest-box").css("height", "430px");
 	    			// $("#image-container").addClass("col-lg-5");
 	    			$("#quest-image").html('');
 	    			$("#quest-image").append('<div id="wrapper"><div id="columns">');
 	    			jQuery.each(data.images, function(index, value){
-            			$("#quest-image #wrapper #columns").append('<div class="pin"><a href="' + value + '" ></a><img src="' + value + '" /></h3><p> image,image </p></div>');
-    					// $("#image-container").append('<img src="' + value + '" />');
-    					// $("#image-container").append('</h3><p> image,image </p></div></div></div>');
-        			});	
-     //    			$('.pin').click(function(){
-					// 	alert($(this).children('img').attr('src'));
+            			$("#quest-image #wrapper #columns").append('<div class="pin"><img src="' + value + '" /><a href="' + value + '" ></a></div>');
+    				});	
+	    			reco_init();
+ 
+				    			
+				    	// 		$('.overlay .container #rem-image #wrapper1 #columns1 .pin').click(function() {
+				    	// 			event.preventDefault();
+				    	// 			var url = $(this).children('img').attr('src');
+				    	// 			serurl = {"url": url};
+				    	// 			$(".overlay .container #rem-image #wrapper1 #columns1").empty();
+									// $(".overlay .container #sign-image").empty();
+									// $.ajax({
+									// 	type:"POST",
+				    	// 				url: "reco/",
+				    	// 				data: serurl,
+				    	// 				dataType: "json",
+				    	// 				success: function(result) {
+				    	// 					$(".overlay .container #sign-image").append('<div class="pin"><img src="' + url + '" width=500px/><a href="' + url + '"  download="Download.jpg"><div><input type="submit" class=" download_btn btn btn-info center-block" value="Download" /></div></a></div>');
+				    	// 					jQuery.each(result.rimages, function(index, value){
+         //    									$(".overlay .container #rem-image #wrapper1 #columns1").append('<div class="pin"><img src="' + value + '" /><a href="' + value + '" ></a></div>');
+    					// 					});
+				    	// 				}
+				    	// 			});
+
+				    	// 		});
+							// }	
+						// });
 					// });
-
-					$('.pin').click(function() {
-						event.preventDefault();
-						var url = $(this).children('img').attr('src');
-						serurl = {"url": url};
-						$.ajax({
-							type:"POST",
-				    		url: "reco/",
-				    		data: serurl,
-				    		dataType: "json",
-				    		success: function(result) {
-				    			$(".overlay .container #sign-image").append('<div class="pin"><a href="' + url + '" ></a><img src="' + url + '" /></h3></div>');
-				    			jQuery.each(result.rimages, function(index, value){
-            						$(".overlay .container #rem-image #wrapper1 #columns1").append('<div class="pin"><a href="' + value + '" ></a><img src="' + value + '" /></h3></div><a href="http://www.glamquotes.com/wp-content/uploads/2011/11/smile.jpg" download="Download.jpg"><input type="submit" id="download_btn" class=" btn btn-info" value="Download" /></a>');
-
-    							});	
-    							// $("div.overlay").toggle("slow");
-    							$("div.overlay").fadeToggle({left: '250px'});
-				    			// alert(result.rimages);
-				    		}
-						});
-						
-						// $("div.overlay").fadeToggle("fast");
-					 //    $(this).animate({width: "400px"}, 'slow');
-		
-					});
-
 				}
 			});
 	  	}
@@ -66,8 +60,68 @@ $(document).ready(function() {
 		$(".overlay .container #sign-image").empty();
 	});
     
-	// $('.pin').dblclick(function(){
-	// 	alert('here');
- //  		// alert($(this).children('img').attr('src'));
-	// });
+  //   $('.overlay .container #rem-image #wrapper1 #columns1 .pin').click(function() {
+  //   	event.preventDefault();
+		// var url = $(this).children('img').attr('src');
+		// serurl = {"url": url};
+		// $(".overlay .container #rem-image #wrapper1 #columns1").empty();
+		// $(".overlay .container #sign-image").empty();
+		// ajaxd(serurl);
+  //   });
+    
 });
+
+function reco_init(){
+	$('#quest-image #wrapper #columns .pin').click(function() {
+		event.preventDefault();
+		var url = $(this).children('img').attr('src');
+		serurl = {"url": url};
+		recod(url, serurl);
+	});
+}
+
+function recod(url, serurl) {
+		$.ajax({
+		type:"POST",
+		url: "reco/",
+		data: serurl,
+		dataType: "json",
+		success: function(result) {
+			$(".overlay .container #sign-image").append('<div class="pin"><img src="' + url + '" width=500px/><a href="' + url + '"  download="Download.jpg"><div><input type="submit" class=" download_btn btn btn-info center-block" value="Download" /></div></a></div>');
+			jQuery.each(result.rimages, function(index, value){
+				$(".overlay .container #rem-image #wrapper1 #columns1").append('<div class="pin"><img src="' + value + '" /><a href="' + value + '" ></a></div>');
+
+			});	
+			// $("div.overlay").toggle("slow");
+			$("div.overlay").fadeToggle({left: '250px'});
+			chain_reco_init();
+			}
+		});
+}
+
+function chain_reco_init() {
+	$('.overlay .container #rem-image #wrapper1 #columns1 .pin').click(function() {
+		event.preventDefault();
+		var url = $(this).children('img').attr('src');
+		serurl = {"url": url};
+		$(".overlay .container #rem-image #wrapper1 #columns1").empty();
+		$(".overlay .container #sign-image").empty();
+		ajaxd(url, serurl);
+	});
+}
+
+function ajaxd(url, serurl) {
+		$.ajax({
+			type:"POST",
+			url: "reco/",
+			data: serurl,
+			dataType: "json",
+			success: function(result) {
+				$(".overlay .container #sign-image").append('<div class="pin"><img src="' + url + '" width=500px/><a href="' + url + '"  download="Download.jpg"><div><input type="submit" class=" download_btn btn btn-info center-block" value="Download" /></div></a></div>');
+				jQuery.each(result.rimages, function(index, value){
+					$(".overlay .container #rem-image #wrapper1 #columns1").append('<div class="pin"><img src="' + value + '" /><a href="' + value + '" ></a></div>');
+				});
+			}
+	});			    		
+}
+

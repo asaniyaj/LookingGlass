@@ -52,9 +52,15 @@ textarea:focus {
 #quest-box {
     margin: 60px auto;
 }
+
+#quest-image {
+    overflow: scroll;
+    height: 500px;
+}
+
 #wrapper {
     width: 90%;
-    max-width: 1100px;
+    max-width: 900px;
     /*min-width: 800px;*/
     margin: 50px auto;
 }
@@ -73,7 +79,7 @@ textarea:focus {
 
 #wrapper1 {
     width: 90%;
-    max-width: 1100px;
+    max-width: 900px;
     /*min-width: 800px;*/
     margin: 50px auto;
 }
@@ -175,9 +181,10 @@ textarea:focus {
 }
 
 .close-thik:after {
-  content: '✖'; /* UTF-8 symbol */
+  content: 'Close'; /* UTF-8 symbol */
   cursor: pointer;
   font-size: 20px;
+  font-style: cursive;
 }
 
 #sign-image {
