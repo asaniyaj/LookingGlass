@@ -11,9 +11,16 @@ col_url= ['Photo_file', 'Photo_id', 'url_Large', 'url_Middle', 'url_Small', 'url
 col_tag = ['Photo_id', 'tags']
 col_esmodel = ['url', 'tags', 'source']
 
-df_url = pd.read_csv("data\NUS-WIDE-urls.txt", delimiter='\t', names = col_url, skiprows = 1)
+df_url_raw = pd.read_csv("data/NUS-WIDE-urls.txt", delimiter='\t', names = col_url, skiprows = 1)
+df_url = df_url_raw.drop_duplicates(subset='Photo_id')
 #df_url = pd.read_csv("data\url_sample.txt", delimiter='\t', names = col_url, skiprows = 1)
-df_tag = pd.read_csv("data\All_Tags.txt", delimiter='\t', names = col_tag)
+df_tag_raw = pd.read_csv("data/All_Tags.txt", delimiter='\t', names = col_tag)
+df_tag = df_tag_raw.drop_duplicates(subset='Photo_id')
+
+
+# df_url = pd.read_csv("data/NUS-WIDE-urls.txt", delimiter='\t', names = col_url, skiprows = 1)
+# #df_url = pd.read_csv("data\url_sample.txt", delimiter='\t', names = col_url, skiprows = 1)
+# df_tag = pd.read_csv("data/All_Tags.txt", delimiter='\t', names = col_tag)
 
 arr_model = np.ndarray(shape=(0, 3))
 for iter, row in df_url.iterrows():

@@ -16,7 +16,26 @@ logr = logging.getLogger(__name__)
 num_images = 10
 
 # Create your views here.
+@csrf_exempt
+def reco(request):
+	context = {}
+	if request.method == 'POST':
+		context['rimages'] = [ "http://img.timeinc.net/time/daily/2007/0706/a_arat_0618.jpg",
+    							"http://cssdeck.com/uploads/media/items/2/2v3VhAp.png",
+    							"http://cssdeck.com/uploads/media/items/1/1swi3Qy.png",
+    							"http://cdn.wegotthiscovered.com/wp-content/uploads/WALL-E.jpg",
+    							"http://cssdeck.com/uploads/media/items/6/6f3nXse.png",
+    							"http://www.metrohnl.com/wp-content/uploads/2015/03/metro-040115-scenestealers-pixar1.jpg",
+    							"http://cssdeck.com/uploads/media/items/8/8kEc1hS.png",
+    							"http://www.ctvnews.ca/polopoly_fs/1.2089627.1415286735!/httpImage/image.jpg_gen/derivatives/landscape_620/image.jpg",
+    						]
+		return HttpResponse(json.dumps(context), content_type='application/json')
+	else:
+		return HttpResponse(json.dumps(context), content_type='application/json')
 
+def test(request):
+	context = {}
+	return render_to_response('lookingglass_app/wrapper.html', context) 
 ## Search View
 @csrf_exempt
 def search_page(request):
@@ -52,17 +71,7 @@ def search_page(request):
     							"http://www.metrohnl.com/wp-content/uploads/2015/03/metro-040115-scenestealers-pixar1.jpg",
     							"http://cssdeck.com/uploads/media/items/8/8kEc1hS.png",
     							"http://www.ctvnews.ca/polopoly_fs/1.2089627.1415286735!/httpImage/image.jpg_gen/derivatives/landscape_620/image.jpg",
-    							"http://img.timeinc.net/time/daily/2007/0706/a_arat_0618.jpg",
-    							"http://img.timeinc.net/time/daily/2007/0706/a_arat_0618.jpg",
-    							"http://cssdeck.com/uploads/media/items/2/2v3VhAp.png",
-    							"http://cssdeck.com/uploads/media/items/1/1swi3Qy.png",
-    							"http://cdn.wegotthiscovered.com/wp-content/uploads/WALL-E.jpg",
-    							"http://cssdeck.com/uploads/media/items/6/6f3nXse.png",
-    							"http://www.metrohnl.com/wp-content/uploads/2015/03/metro-040115-scenestealers-pixar1.jpg",
-    							"http://cssdeck.com/uploads/media/items/8/8kEc1hS.png",
-    							"http://www.ctvnews.ca/polopoly_fs/1.2089627.1415286735!/httpImage/image.jpg_gen/derivatives/landscape_620/image.jpg",
-    							"http://img.timeinc.net/time/daily/2007/0706/a_arat_0618.jpg",
-    							 ]
+    						]
     	print context['images']
     	print json.dumps(context)
     	return HttpResponse(json.dumps(context), content_type='application/json')
@@ -101,41 +110,67 @@ def display_images(request):#, text):
     return render_to_response('lookingglass_app/index.html', context) 
   
 
-# def extract_text(request):
-# 	context = dict()
-# 	if request.method == 'GET':
-# 		print request
-# 		url = request.GET.get('url') 
-# 		url_encode = urllib2.quote(url, safe='')
-# 		print url_encode
-# 		dev_token = "1032fa0f2a069db6ff89e99e4536f414"
-# 		response = urllib2.urlopen('http://api.diffbot.com/v3/article?token=1032fa0f2a069db6ff89e99e4536f414&url='+url_encode)
-# 		data = json.load(response)
-# 		ans = data['objects'][0]['text']
-# 		ans2 = ans.encode('ascii','ignore')
-# 		return ans2
-# 		print "inservice"
-# 		context['images'] = [ "http://img.timeinc.net/time/daily/2007/0706/a_arat_0618.jpg",
-# 							"http://cssdeck.com/uploads/media/items/2/2v3VhAp.png",
-# 							"http://cssdeck.com/uploads/media/items/1/1swi3Qy.png",
-# 							"http://cdn.wegotthiscovered.com/wp-content/uploads/WALL-E.jpg",
-# 							"http://cssdeck.com/uploads/media/items/6/6f3nXse.png",
-# 							"http://www.metrohnl.com/wp-content/uploads/2015/03/metro-040115-scenestealers-pixar1.jpg",
-# 							"http://cssdeck.com/uploads/media/items/8/8kEc1hS.png",
-# 							"http://www.ctvnews.ca/polopoly_fs/1.2089627.1415286735!/httpImage/image.jpg_gen/derivatives/landscape_620/image.jpg",
-# 							"http://img.timeinc.net/time/daily/2007/0706/a_arat_0618.jpg",
-# 							"http://img.timeinc.net/time/daily/2007/0706/a_arat_0618.jpg",
-# 							"http://cssdeck.com/uploads/media/items/2/2v3VhAp.png",
-# 							"http://cssdeck.com/uploads/media/items/1/1swi3Qy.png",
-# 							"http://cdn.wegotthiscovered.com/wp-content/uploads/WALL-E.jpg",
-# 							"http://cssdeck.com/uploads/media/items/6/6f3nXse.png",
-# 							"http://www.metrohnl.com/wp-content/uploads/2015/03/metro-040115-scenestealers-pixar1.jpg",
-# 							"http://cssdeck.com/uploads/media/items/8/8kEc1hS.png",
-# 							"http://www.ctvnews.ca/polopoly_fs/1.2089627.1415286735!/httpImage/image.jpg_gen/derivatives/landscape_620/image.jpg",
-# 							"http://img.timeinc.net/time/daily/2007/0706/a_arat_0618.jpg",
-# 							 ]
-# 		print context['images']
-# 		print json.dumps(context)
-# 		return HttpResponse(json.dumps(context), content_type='application/json')
-# 	else:
-# 		return HttpResponse(json.dumps(context), content_type='application/json')
+def extract_text(request):
+	context = dict()
+	if request.method == 'GET':
+		print request
+		url = request.GET.get('url') 
+		url_encode = urllib2.quote(url, safe='')
+		print url_encode
+		dev_token = "1032fa0f2a069db6ff89e99e4536f414"
+		response = urllib2.urlopen('http://api.diffbot.com/v3/article?token=1032fa0f2a069db6ff89e99e4536f414&url='+url_encode)
+		data = json.load(response)
+		ans = ''
+		if 'objects' not in data:
+			ans = 'Unknown data. Cannot parse.'
+		else:
+			ans = data['objects'][0]['text']
+		# requestText = ans.encode('ascii','ignore')
+		# print ans2
+		# gentags = ntlkLib.extract_keywords(requestText)
+  #   	gentags = [str(x) for x in gentags]
+  #   	gentags = [x[2:-1] for x in gentags]
+  #   	print "here #####", gentags
+  #   	sq = SQ()
+  #   	for t in gentags:
+  #       	sq.add(SQ(tag=t), SQ.OR)
+    
+  #   	# add flickr images
+  #   	context['tags'] = gentags
+  #   	# images_flickr = iFind.getImagesFromFlickr_User(query_text=query_text)
+    	
+  #   	images = SearchQuerySet().filter(sq)
+  #   	print images
+  #   	final = []
+  #   	for image in images:
+  #   		final.append(image.url) if image.url else final[0].append('URL: Unknown')
+  #   	context['images'] = final
+    
+		context['images'] = [ "http://img.timeinc.net/time/daily/2007/0706/a_arat_0618.jpg",
+							"http://cssdeck.com/uploads/media/items/2/2v3VhAp.png",
+							"http://cssdeck.com/uploads/media/items/1/1swi3Qy.png",
+							"http://cdn.wegotthiscovered.com/wp-content/uploads/WALL-E.jpg",
+							"http://cssdeck.com/uploads/media/items/6/6f3nXse.png",
+							"http://www.metrohnl.com/wp-content/uploads/2015/03/metro-040115-scenestealers-pixar1.jpg",
+							"http://cssdeck.com/uploads/media/items/8/8kEc1hS.png",
+							"http://www.ctvnews.ca/polopoly_fs/1.2089627.1415286735!/httpImage/image.jpg_gen/derivatives/landscape_620/image.jpg",
+							"http://img.timeinc.net/time/daily/2007/0706/a_arat_0618.jpg",
+							"http://img.timeinc.net/time/daily/2007/0706/a_arat_0618.jpg",
+							"http://cssdeck.com/uploads/media/items/2/2v3VhAp.png",
+							"http://cssdeck.com/uploads/media/items/1/1swi3Qy.png",
+							"http://cdn.wegotthiscovered.com/wp-content/uploads/WALL-E.jpg",
+							"http://cssdeck.com/uploads/media/items/6/6f3nXse.png",
+							"http://www.metrohnl.com/wp-content/uploads/2015/03/metro-040115-scenestealers-pixar1.jpg",
+							"http://cssdeck.com/uploads/media/items/8/8kEc1hS.png",
+							"http://www.ctvnews.ca/polopoly_fs/1.2089627.1415286735!/httpImage/image.jpg_gen/derivatives/landscape_620/image.jpg",
+							"http://img.timeinc.net/time/daily/2007/0706/a_arat_0618.jpg",
+							 ]
+		print context['images']
+		print json.dumps(context)
+		# return json.dumps(context)
+		return HttpResponse(json.dumps(context), content_type='application/json')
+		# return render_to_response('lookingglass_app/main_page.html', context) 
+	else:
+		# return json.dumps(context)
+		return HttpResponse(json.dumps(context), content_type='application/json')
+		# return render_to_response('lookingglass_app/main_page.html', context) 

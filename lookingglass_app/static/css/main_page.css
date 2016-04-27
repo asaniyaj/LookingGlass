@@ -71,6 +71,25 @@ textarea:focus {
     column-fill: auto;
 }
 
+#wrapper1 {
+    width: 90%;
+    max-width: 1100px;
+    /*min-width: 800px;*/
+    margin: 50px auto;
+}
+
+#columns1 {
+    -webkit-column-count: 3;
+    -webkit-column-gap: 10px;
+    -webkit-column-fill: auto;
+    -moz-column-count: 3;
+    -moz-column-gap: 10px;
+    -moz-column-fill: auto;
+    column-count: 3;
+    column-gap: 15px;
+    column-fill: auto;
+}
+
 .pin {
     display: inline-block;
     background: #FEFEFE;
@@ -129,3 +148,54 @@ textarea:focus {
     margin-left: -1px;
 }
 
+.overlay {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:rgba(0, 0, 0, 0.85);
+    z-index:9999;
+    color:white;
+    display: none;
+/*    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 10px;
+    margin-right:10px;
+*/}
+
+[class*='close-'] {
+  color: #777;
+  font: 14px/100% arial, sans-serif;
+  position: absolute;
+  right: 5px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #fff;
+  top: 5px;
+}
+
+.close-thik:after {
+  content: '✖'; /* UTF-8 symbol */
+  cursor: pointer;
+  font-size: 20px;
+}
+
+#sign-image {
+    position: relative;
+    margin-top: 100px;
+    margin-left: 20px;
+}
+
+#rem-image {
+    margin-top: 100px;
+}
+#sign-image .pin img {
+    height: auto;
+    width: 340px;
+}
+
+#reco-caption {
+    font-size: 20px;
+    font-family: cursive;
+    margin-left: 20px;
+}

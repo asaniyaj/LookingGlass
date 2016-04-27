@@ -9,3 +9,4 @@ to start the app, pip install django, django-haystack, django-jquery, elasticsea
 4. Never commit your local files like db.sqllite3 to git.
 5. pip install google-api-python-client
 6. pip install flickrapi
+7. brew install elasticsearch, start elasticsearch
