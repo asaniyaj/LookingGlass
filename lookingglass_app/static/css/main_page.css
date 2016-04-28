@@ -206,3 +206,45 @@ textarea:focus {
     font-family: cursive;
     margin-left: 20px;
 }
+
+.helptext {
+    display: none;
+}
+
+.right {
+    float: right;
+}
+
+.btn-file {
+    height: 35px;
+}
+#btn-file1 {
+    background-color: inherit;
+    border-color: transparent;
+}
+.btn-file input[type=file] {
+ /*   position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+ */   text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+    height:30px;
+}
+#upload-btn {
+    padding-top: 10px;
+    padding-bottom: 10px; 
+    padding-left: 100px;
+    width:20px;
+    height: 20px;
+}
+#hspace {
+    height: 20px;
+}

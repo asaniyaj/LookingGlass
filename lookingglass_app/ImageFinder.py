@@ -1,9 +1,9 @@
-
 from apiclient.discovery import build
 from selenium import webdriver
 from flickrapi import FlickrAPI
 import custom as ntlkLib
 from haystack.query import SearchQuerySet, SQ
+import dbupdate
 
 def getImages_Google(query_text, numreq=5):
 	num_img = 0
@@ -112,10 +112,8 @@ def getAllImages(text, num_images):
 		#images = SearchQuerySet().filter(tag='celebrity')	#(url='http://farm3.static.flickr.com/2244/2124494179_b039ddccac_b.jpg')#
 		images_db = []
 		for img in images_db_raw:
-				print img
 				for img_id in img:
 					url = img['url']
-					#print url
 					if(url != 'null'):
 						images_db.append(url)
 		#print "DB says: ", images_db
@@ -126,6 +124,7 @@ def getAllImages(text, num_images):
 			images_google = getImages_Google(query_text, num_google)
 			#print "Google says: ", images_google
 			image_list.extend(images_google)
-	print "image_list", image_list
+			dbupdate.addImages(images_google, gentags)
+	#print "image_list", image_list
 	#print "image list size finally is: ", len(image_list) 
 	return gentags, image_list 

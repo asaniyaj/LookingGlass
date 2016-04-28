@@ -8,8 +8,20 @@
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 </button>
-                <a class="navbar-brand" href="#">Advanced Internet Computing Project</a>
-            </div>
+                <a class="navbar-brand" href="#">CS6675: AIC Project</a>
+                </div>
+            <div class="navbar-collapse collapse">
+            {% if user.is_authenticated %}
+                <a class="right navbar-brand navbar-nav navbar-right"> Hello {{ user.username }}!</a>
+                <a class="right navbar-brand navbar-nav navbar-right" href="/">Logout</a>
+            {% else %}
+                <a class="right navbar-brand navbar-nav navbar-right" href="register">Sign Up</a>
+                <a class="right navbar-brand navbar-nav navbar-right" href="login">Login</a>
+                <!-- <a class="navbar-brand"> Hello, World!</a> -->
+            {% endif %}
+                </div>
+            
+
             
         </div>
     </nav>
@@ -23,15 +35,27 @@
     <div id = "quest-container" class="container">
             
             	<div id = "quest-box" class="col-lg-12 text-center jumbotron">
-    				<form id="quest-form" action="/" method="post">
-
-                    <label for="inputlg">Copy your text here!</label>
-    				<!-- <input id="main-text" name="text_to_send" class="form-control input-lg" type="text" placeholder="Your words here..."></input> -->
-                    <textarea placeholder="Your words here..."  name="text_to_send" id="main_text" cols="40" class="form-control" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
-    				<p></p>
     				
-    				<input type="submit" id="btn" class=" btn btn-info" value="Show Pictures!" />
-				    </form>
+            <form method="post" enctype="multipart/form-data" action="/" id="quest-form">
+            <label for="inputlg">Copy your text here!</label>
+                            <!-- <input id="main-text" name="text_to_send" class="form-control input-lg" type="text" placeholder="Your words here..."></input> -->
+                            <textarea placeholder="Your words here..."  name="text_to_send" id="main_text" cols="40" class="form-control" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
+                            <p></p>
+                            <div><label for="inputlg">OR upload a file</label></div>
+                            
+                    <div>
+            
+                    <label for="upload-btn"> <span class="btn btn-default">Got a file?</span></label>
+                    <span>
+                            <input style="visibility: hidden; position: absolute;" id='upload-btn' type="file" name="file_source" size="40" onchange='$("#upload-file-info").html($(this).val());'>
+                        </span>
+                        <span class='label label-info' id="upload-file-info"></span>
+                    </div>          
+            <div id="hspace"></div>
+
+            <!-- <input type="file" id="grade_csv" name="test"/> -->
+             <input type="submit" name="submit" class="btn btn-info" value="Show Pictures!" />
+            </form>
                 </div> 
         
             {% include "lookingglass_app/search_results.html" %}        

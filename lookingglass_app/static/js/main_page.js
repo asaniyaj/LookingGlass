@@ -15,9 +15,14 @@ $(document).ready(function() {
 	    		data: serializedData,
 	    		dataType: "json",
 	    		success: function(data) {
+	    			$('label[for="inputlg"]').html('');
+	    			$('label[for="upload-btn"]').html('');
+	    			$('#upload-btn').css('display','none');
+	    			$('#hspace').css('display','none');
+	    			$('#upload-file-info').css('display', 'none');
 	    			$("#quest-box").addClass("col-lg-6");
-	    			$("#main_text").css("height", "280px");
-	    			$("#quest-box").css("height", "430px");
+	    			$("#main_text").css("height", "270px");
+	    			$("#quest-box").css("height", "440px");
 	    			// $("#image-container").addClass("col-lg-5");
 	    			$("#quest-image").html('');
 	    			$("#quest-image").append('<div id="wrapper"><div id="columns">');
@@ -68,6 +73,7 @@ $(document).ready(function() {
 		// $(".overlay .container #sign-image").empty();
 		// ajaxd(serurl);
   //   });
+  chain_reco_init();
     
 });
 
@@ -97,15 +103,17 @@ function recod(url, serurl) {
 			chain_reco_init();
 			}
 		});
+
 }
+
 
 function chain_reco_init() {
 	$('.overlay .container #rem-image #wrapper1 #columns1 .pin').click(function() {
 		event.preventDefault();
 		var url = $(this).children('img').attr('src');
 		serurl = {"url": url};
-		$(".overlay .container #rem-image #wrapper1 #columns1").empty();
-		$(".overlay .container #sign-image").empty();
+		$(".overlay .container #rem-image #wrapper1 #columns1").html("");
+		$(".overlay .container #sign-image").html("");
 		ajaxd(url, serurl);
 	});
 }
@@ -121,7 +129,11 @@ function ajaxd(url, serurl) {
 				jQuery.each(result.rimages, function(index, value){
 					$(".overlay .container #rem-image #wrapper1 #columns1").append('<div class="pin"><img src="' + value + '" /><a href="' + value + '" ></a></div>');
 				});
+				// $(".overlay .container #rem-image #wrapper1 #columns1").toggle();
+				// $(".overlay .container #sign-image").toggle();
+				chain_reco_init();
 			}
-	});			    		
+	});
+
 }
 
