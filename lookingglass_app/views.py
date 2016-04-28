@@ -169,79 +169,46 @@ def search_page(request):
     # print request.POST
     if request.method == 'POST':
     	print request.POST, request.FILES
-    	print "GOSSIP GIRL"
    		
     	requestText = escape(request.POST.get('text_to_send', ''))
     	if (len(requestText) == 0):
 	    	if (len(request.FILES)):
 	    		requestText = handle_uploaded_file(request.FILES['file_source'])
     		else:
-    			print "Empty text"
-    	print "here", requestText
-    	gentags = ntlkLib.extract_keywords(requestText)
-    	gentags = [str(x) for x in gentags]
-    	gentags = [x[2:-1] for x in gentags]
-    	print "here #####", gentags
-    	sq = SQ()
-    	for t in gentags:
-        	sq.add(SQ(tag=t), SQ.OR)
-    
-    	# add flickr images
-    	context['tags'] = gentags
-    	# images_flickr = iFind.getImagesFromFlickr_User(query_text=query_text)
-    	
-    	images = SearchQuerySet().filter(sq)
-    	print images
-    	final = []
-    	for image in images:
-    		final.append(image.url) if image.url else final[0].append('URL: Unknown')
-    	context['images'] = final
-    	context['images'] = [ "http://img.timeinc.net/time/daily/2007/0706/a_arat_0618.jpg",
-    							"http://cssdeck.com/uploads/media/items/2/2v3VhAp.png",
-    							"http://cssdeck.com/uploads/media/items/1/1swi3Qy.png",
-    							"http://cdn.wegotthiscovered.com/wp-content/uploads/WALL-E.jpg",
-    							"http://cssdeck.com/uploads/media/items/6/6f3nXse.png",
-    							"http://www.metrohnl.com/wp-content/uploads/2015/03/metro-040115-scenestealers-pixar1.jpg",
-    							"http://cssdeck.com/uploads/media/items/8/8kEc1hS.png",
-    							"http://www.ctvnews.ca/polopoly_fs/1.2089627.1415286735!/httpImage/image.jpg_gen/derivatives/landscape_620/image.jpg",
-    						]
+    			requestText = "Empty text"
+
+    	print "Request Text is ", requestText
+    	num_images = 15
+    	text = requestText
+    	flickruser = 'empty'
+    	if request.user.is_authenticated():
+    		flickruser = request.user.userprofile.flickrid
+    	image_list = iFind.getAllImages(text, num_images, flickruser)
+    	# if (len(image_list) == 0):
+    	# 	context['images'] = "No Image Found."
+    	# else:
+    	context['images'] = image_list
     	print context['images']
     	print json.dumps(context)
     	return HttpResponse(json.dumps(context), content_type='application/json')
     else:
     	return render_to_response('lookingglass_app/main_page.html', context) 
-    
-def display_images(request):#, text):
-    context = dict()
-    #text = request['text']
-    # if request.method == 'POST':
-     	# requestText = escape(request.Get.get['text'])
-    requestText = 'Harry Potter is a series of chercherlafemme seven novels written by British author J. K. Rowling. The novels chronicle the life of beauty a young wizard, Harry Potter, and his friends Hermione Granger and Ron Weasley, all of whom are students at Hogwarts School of chercherlafemme Witchcraft and Wizardry. The main story arc concerns Harry''s struggle against Lord Voldemort, the Dark film wizard who intends to become immortal, overthrow the chercherlafemme Ministry of Magic, chercherlafemme subjugate non-magic chercherlafemme people and destroy anyone who chercherlafemme beauty stands in his way. Since the  beauty release of the first novel, Harry Potter and the Philosopher''s Stone, on 30 June 1997, the books have gained immense popularity, beauty critical acclaim and chercherlafemme commercial success worldwide. They attracted chercherlafemme a wide adult audience, and have remained one of the beauty preeminent cornerstones of young adult literature. The series has also had some share of criticism, including concern about the increasingly dark tone as the series progressed, as well as the often gruesome and graphic violence chercherlafemme depicted in the series. As of July 2013, the books chercherlafemme have sold more than 450 million copies worldwide, making the chercherlafemme series the best-selling book series in history, and have been translated into seventy-three languages. The last four books beauty chercherlafemme consecutively set records as the fastest-selling books in history, beauty chercherlafemme with the final instalment selling roughly eleven million copies in the United States within twenty four hours of its release.'
-    # print text
-    gentags = ntlkLib.extract_keywords(requestText)
-    print gentags
-    
-    query_text = ''
-    print 'gentags', gentags
-    sq = SQ()
-    for t in gentags:
-        sq.add(SQ(tag=t), SQ.OR)
-    
-    context['tags'] = query_text
-    images_flickr = iFind.getImagesFromFlickr_User(query_text=query_text)
-    images_flickr
-    #if images_flickr
-    images = SearchQuerySet().filter(sq)
-    print images
-    #images = SearchQuerySet().filter(tag='celebrity')    #(url='http://farm3.static.flickr.com/2244/2124494179_b039ddccac_b.jpg')#
-    final = [[],[]]
-    for image in images:
-    	final[0].append(image.url) if image.url else final[0].append('URL: Unknown')
-    	final[1].append(image.source) if image.source else final[0].append('Source: Unknown')
-    	# print image.url, image.tag, image.source
-    print json.dumps(final)
-    return render_to_response('lookingglass_app/index.html', context) 
-  
+
+@csrf_exempt    
+def reco(request):
+    context = {}
+    if request.method == 'POST':
+        orig_url = escape(request.POST.get('original_url', ''))
+        
+        num_images = 10       
+        print "here", orig_url, num_images
+        
+        keyword, image_list = iFind.getSimilarImages_Google(orig_url, num_images)
+        context['keyword'] = keyword
+        context['rimages'] = image_list
+        return HttpResponse(json.dumps(context), content_type='application/json')
+    else:
+        return HttpResponse(json.dumps(context), content_type='application/json')
 
 def extract_text(request):
 	context = dict()
@@ -307,60 +274,3 @@ def extract_text(request):
 		# return json.dumps(context)
 		return HttpResponse(json.dumps(context), content_type='application/json')
 		# return render_to_response('lookingglass_app/main_page.html', context)
-
-
-# num_images = 10
-
-# # Create your views here.
-
-# ## Search View
-# @csrf_exempt
-# def search_page(request):
-#     context = dict()
-#     #context['images'] = "http://img.timeinc.net/time/daily/2007/0706/a_arat_0618.jpg"
-#     # print request.POST
-#     if request.method == 'POST':
-#         requestText = escape(request.POST.get('text_to_send', ''))
-#         num_img_str = escape(request.POST.get('number_of_images', ''))
-#         num_images = int(num_img_str)
-#         #print "here", requestText
-#         text = requestText
-#         gentags, image_list = iFind.getAllImages(text, num_images)
-#         context['tags'] = gentags        
-#         context['image_list'] = image_list
-#         return HttpResponse(json.dumps(context), content_type='application/json')
-#     else:
-#         return render_to_response('lookingglass_app/main_page.html', context) 
-    
-# def display_images(request, num_images = 20):#, text):
-#     context = dict()
-#     #text = request['text']
-#     text = 'Harry Potter is a series of seven novels written by British author J. K. Rowling. The novels chronicle the life of beauty a young wizard, Harry Potter, and his friends Hermione Granger and Ron Weasley, all of whom are students at Hogwarts School of Witchcraft and Wizardry. The main story arc concerns Harry''s struggle against Lord Voldemort, the Dark film wizard who intends to become immortal, overthrow the Ministry of Magic, subjugate non-magic people and destroy anyone who beauty stands in his way. Since the  beauty release of the first novel, Harry Potter and the Philosopher''s Stone, on 30 June 1997, the books have gained immense popularity, beauty critical acclaim and commercial success worldwide. They attracted a wide adult audience, and have remained one of the beauty preeminent cornerstones of young adult literature. The series has also had some share of criticism, including concern about the increasingly dark tone as the series progressed, as well as the often gruesome and graphic violence depicted in the series. As of July 2013, the books have sold more than 450 million copies worldwide, making the series the best-selling book series in history, and have been translated into seventy-three languages. The last four books beauty consecutively set records as the fastest-selling books in history, beauty with the final instalment selling roughly eleven million copies in the United States within twenty four hours of its release.'
-#     gentags, image_list = iFind.getAllImages(text, num_images)
-#     context['tags'] = gentags        
-#     context['image_list'] = image_list
-#     #print "Context is!!!", context
-#     return render_to_response('lookingglass_app/index.html', context) 
-
-# def reco(request):
-#     context = {}
-#     if request.method == 'POST':
-#         orig_url = escape(request.POST.get('original_url', ''))
-#         num_images = 10       
-#         print "here", orig_url, num_images
-        
-#         keyword, image_list = iFind.getSimilarImages_Google(orig_url, num_images)
-#         context['keyword'] = keyword
-#         context['rimages'] = image_list
-# #         context['rimages'] = [ "http://img.timeinc.net/time/daily/2007/0706/a_arat_0618.jpg",
-# #                                 "http://cssdeck.com/uploads/media/items/2/2v3VhAp.png",
-# #                                 "http://cssdeck.com/uploads/media/items/1/1swi3Qy.png",
-# #                                 "http://cdn.wegotthiscovered.com/wp-content/uploads/WALL-E.jpg",
-# #                                 "http://cssdeck.com/uploads/media/items/6/6f3nXse.png",
-# #                                 "http://www.metrohnl.com/wp-content/uploads/2015/03/metro-040115-scenestealers-pixar1.jpg",
-# #                                 "http://cssdeck.com/uploads/media/items/8/8kEc1hS.png",
-# #                                 "http://www.ctvnews.ca/polopoly_fs/1.2089627.1415286735!/httpImage/image.jpg_gen/derivatives/landscape_620/image.jpg",
-# #                                 ]
-#         return HttpResponse(json.dumps(context), content_type='application/json')
-#     else:
-#         return HttpResponse(json.dumps(context), content_type='application/json')
