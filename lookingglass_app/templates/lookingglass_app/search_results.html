@@ -1,34 +1,15 @@
-
-<div class="container">
-
-    <hgroup class="mb20">
-        <h4></h4>
-        <h7 class="lead"><i><strong id="result-number" class="text-danger">{{ papers.count }}</strong> results were found for the search for <strong class="text-danger">{{ query }}</strong></i></h7>                               
-    </hgroup>
-
-    <section class="col-xs-12 col-sm-6 col-md-12">
-        {% if papers.count > 0 %}
-         {% for paper in papers %}
-    
-        <article class="search-result row">
-            <div class="col-xs-12 col-sm-12 col-md-2">
-                <ul class="meta-search">
-                    <li><i class="glyphicon glyphicon-certificate"></i> <span> {{ paper.object.source }} </span></li>
-                    <li><i class="glyphicon glyphicon-calendar"></i> <span> {{ paper.object.publishedYear }} </span></li>
-                    <li><i class="glyphicon glyphicon-tags"></i> <span>Categories</span></li>
-                </ul>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-                <h3><a href="#" title="">{{ paper.object.title }}</a></h3>
-                <p class="abstract-text">{{ paper.abstract }}</p>                        
-                <span class="plus"><a href="#" title="page-view"><i class="glyphicon glyphicon-option-horizontal"></i></a></span>
-            </div>
-            <span class="clearfix borda"></span>
-        </article>
-        {% endfor %}
-        {% endif %}
-        
-    </section>
+<div id = "quest-image" class="col-lg-6">
+</div>              
+<div class="overlay">
+     <div class="container">
+     	<div id="close" class="close-thik"></div>
+     	<div id = "sign-image" class="col-lg-6"></div>
+     	<div id = "rem-image" class="col-lg-5">
+     		<p id='reco-caption'> s</p>
+     		<div id="wrapper1"><div id="columns1"></div></div>
+     	</div>
+     </div>
 </div>
+
 
       	

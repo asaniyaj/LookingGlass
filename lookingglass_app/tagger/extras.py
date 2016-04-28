@@ -122,14 +122,14 @@ def build_dict_from_nltk(output_file, corpus=None, stopwords=None,
                if w[0].isalpha()]
         corpus_list.append(doc)
 
-    corpus = nltk.corpus.reuters
-    stopwords += list(nltk.corpus.reuters.words('stopwords'))
+    # corpus = nltk.corpus.reuters
+    # stopwords += list(nltk.corpus.reuters.words('stopwords'))
 
-    if verbose: print 'Processing Reuter corpus...'
-    for file in corpus.fileids():
-        doc = [stemmer(Tag(w.lower())).stem for w in corpus.words(file)
-               if w[0].isalpha()]
-        corpus_list.append(doc)
+    # if verbose: print 'Processing Reuter corpus...'
+    # for file in corpus.fileids():
+    #     doc = [stemmer(Tag(w.lower())).stem for w in corpus.words(file)
+    #            if w[0].isalpha()]
+    #     corpus_list.append(doc)
 
     if verbose: print 'Processing stopwords...'
     stopwords = [stemmer(Tag(w.lower())).stem for w in stopwords]

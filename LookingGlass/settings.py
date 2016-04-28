@@ -26,8 +26,8 @@ SECRET_KEY = 'u0-(im%c^u_g1@v!0d(su4#23ho+(uyau@9+h*2dk09ivj1398'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
+LOGIN_URL = '/lookingglass_app/login/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Application definition
 
 INSTALLED_APPS = [
@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'LookingGlass',
     'lookingglass_app'
 ]
+
+AUTH_PROFILE_MODULE = 'lookingglass_app.UserProfile'
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -93,7 +95,7 @@ HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
         'URL': 'http://127.0.0.1:9200/',
-        'INDEX_NAME': 'ImageIndex',
+        'INDEX_NAME': 'imageindex',
     },
 }
 
@@ -135,3 +137,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'lookingglass_app/static')

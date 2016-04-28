@@ -1,0 +1,92 @@
+{% extends "lookingglass_app/base.html" %}
+{% block content %}
+
+    <!-- Navigation -->
+    
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- <a class="navbar-brand">The Looking Glass</a> -->
+
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"><!--
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Services</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>-->
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1>The Looking Glass</h1>
+                <p class="lead">We bring pictures into your life!</p>
+                
+                <div class="jumbotron">
+
+                {% if registered %}
+                <strong>Thank you for registering!</strong>
+                <br>
+                <a href="../">Return to the homepage.</a><br />
+                {% else %}
+                <!-- LookingGlass says: <strong>register here!</strong><br /> -->
+
+                <form id="user_form" method="post" action="."
+                enctype="multipart/form-data">
+
+                <!-- {% csrf_token %} -->
+
+                <!-- Display each form. The as_p method wraps each element in a paragraph
+                 (<p>) element. This ensures each element appears on a new line,
+                 making everything look neater. -->
+                {{ user_form.as_p }}
+                {{ profile_form.as_p }}
+
+                <!-- <font size="4"><b>Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b></font><input type="text" name="username" value="" size="50" />
+                <br />
+                <br>
+                <font size="4"><b>Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b></font><input type="password" name="password" value="" size="50" />
+                <br />
+                <br>
+                <font size="4"><b>Email Address:&nbsp;&nbsp;&nbsp; </b></font><input type="text" name="email_address" value="" size="50" />
+                <br />
+                <br>
+                <font size="4"><b>Flickr:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b></font><input type="text" name="flickr" value="" size="50" />
+                <br />
+                <br>
+                </form> -->
+
+            <!-- Provide a button to click to submit the form. -->
+            <input type="submit" class="btn btn-info" name="submit" value="Register" />
+        </form>
+        {% endif %}
+                
+                </div>
+                
+            </div>
+        </div>
+        <!-- /.row -->
+
+    </div>
+{% endblock %}
